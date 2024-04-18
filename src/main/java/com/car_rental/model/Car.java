@@ -1,5 +1,6 @@
 package com.car_rental.model;
 
+import com.car_rental.dto.DataRegisterCarDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,5 +40,24 @@ public class Car {
 
     @Column(columnDefinition = "longblob")
     private byte [] image;
+
+    //convertir de Entity a DTO
+    public DataRegisterCarDto getCarDto(){
+
+        DataRegisterCarDto carDto = new DataRegisterCarDto();
+
+        carDto.setId(id);
+        carDto.setName(name);
+        carDto.setDescription(description);
+        carDto.setColor(color);
+        carDto.setType(type);
+        carDto.setPrice(price);
+        carDto.setTransmission(transmission);
+        carDto.setModelYear(modelYear);
+        carDto.setBrand(brand);
+        carDto.setReturnedImage(image);
+
+        return carDto;
+    }
 
 }

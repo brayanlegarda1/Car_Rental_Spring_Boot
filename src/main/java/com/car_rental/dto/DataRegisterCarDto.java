@@ -1,5 +1,6 @@
 package com.car_rental.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 

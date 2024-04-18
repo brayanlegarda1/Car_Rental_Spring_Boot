@@ -35,7 +35,7 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
 
-        user.setRole(Role.CUSTOM);
+        user.setRole(Role.ADMIN);
 
         user = repository.save(user);
 
@@ -48,12 +48,12 @@ public class AuthenticationService {
     public AuthenticationResponseDto authenticate(User request) {
        authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                       request.getEmail(),
+                       request.getUsername(),
                         request.getPassword()
                 )
         );
 
-        User user = repository.findFirstByEmail(request.getEmail()).orElseThrow();
+        User user = repository.findByUsername(request.getUsername()).orElseThrow();
         String token = jwtService.generateToken(user);
 
         return new AuthenticationResponseDto(token);
